@@ -8,28 +8,28 @@ COLUMNS="$(printf '%*s\n' "${TERM_WIDTH}" '' | tr ' ' -)"
 
 # set exchange data as functions
 function exch_bity() {
-  EXCHNAME="${EXCHNAME} Bity"
-  CURR="${CURR} CHF"
-  SLLEXCH="${SLLEXCH} https://bity.com/api/v1/rate_we_buy/ETHCHF/"
-  SLLJSON="${SLLJSON} rate"
-  BUYEXCH="${BUYEXCH} https://bity.com/api/v1/rate_we_sell/ETHCHF/"
-  BUYJSON="${BUYJSON} rate"
+  EXCHNAME+=" Bity"
+  CURR+=" CHF"
+  SLLEXCH+=" https://bity.com/api/v1/rate_we_buy/ETHCHF/"
+  SLLJSON+=" rate"
+  BUYEXCH+=" https://bity.com/api/v1/rate_we_sell/ETHCHF/"
+  BUYJSON+=" rate"
 }
 function exch_etherscan() {
-  EXCHNAME="${EXCHNAME} Etherscan"
-  CURR="${CURR} USD"
-  SLLEXCH="${SLLEXCH} https://api.etherscan.io/api?module=stats&action=ethprice"
-  SLLJSON="${SLLJSON} ethusd"
-  BUYEXCH="${BUYEXCH} -"
-  BUYJSON="${BUYJSON} -"
+  EXCHNAME+=" Etherscan"
+  CURR+=" USD"
+  SLLEXCH+=" https://api.etherscan.io/api?module=stats&action=ethprice"
+  SLLJSON+=" ethusd"
+  BUYEXCH+=" -"
+  BUYJSON+=" -"
 }
 function exch_lykke() {
-  EXCHNAME="${EXCHNAME} Lykke"
-  CURR="${CURR} CHF"
-  SLLEXCH="${SLLEXCH} https://lykke-public-api.azurewebsites.net/api/Market/ETHCHF"
-  SLLJSON="${SLLJSON} bid"
-  BUYEXCH="${BUYEXCH} https://lykke-public-api.azurewebsites.net/api/Market/ETHCHF"
-  BUYJSON="${BUYJSON} ask"
+  EXCHNAME+=" Lykke"
+  CURR+=" CHF"
+  SLLEXCH+=" https://lykke-public-api.azurewebsites.net/api/Market/ETHCHF"
+  SLLJSON+=" bid"
+  BUYEXCH+=" https://lykke-public-api.azurewebsites.net/api/Market/ETHCHF"
+  BUYJSON+=" ask"
 }
 
 # set functions
@@ -77,7 +77,7 @@ function zero_trail() {
 while getopts ":a:bedhlv" opt; do
   case ${opt} in
     a)
-      ETHER="${ETHER} $(echo ${OPTARG})"
+      ETHER+=" $(echo ${OPTARG})"
       ;;
     d)
       DATE="$(date +%F\ %T)"

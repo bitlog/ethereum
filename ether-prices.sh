@@ -53,8 +53,8 @@ fi
 EXCHNAME="Bity"
 EXCHCURR="CHF"
 
-EXCHNAME="${EXCHNAME} Lykke"
-EXCHCURR="${EXCHCURR} CHF"
+EXCHNAME+=" Lykke"
+EXCHCURR+=" CHF"
 
 
 # run data fetch
@@ -75,10 +75,10 @@ if [[ ! -z "${FETCH}" ]]; then
   SLLJSON="rate"
 
   # set exchange data for Lykke
-  BUYEXCH="${BUYEXCH} https://lykke-public-api.azurewebsites.net/api/Market/ETHCHF"
-  BUYJSON="${BUYJSON} ask"
-  SLLEXCH="${SLLEXCH} https://lykke-public-api.azurewebsites.net/api/Market/ETHCHF"
-  SLLJSON="${SLLJSON} bid"
+  BUYEXCH+=" https://lykke-public-api.azurewebsites.net/api/Market/ETHCHF"
+  BUYJSON+=" ask"
+  SLLEXCH+=" https://lykke-public-api.azurewebsites.net/api/Market/ETHCHF"
+  SLLJSON+=" bid"
 
 
   # set variable for incremental runs
@@ -121,7 +121,7 @@ if [[ ! -z "${FETCH}" ]]; then
     fi
 
     # set price total
-    PRICES="${PRICES},${BUYPRICE},${SLLPRICE}"
+    PRICES+=",${BUYPRICE},${SLLPRICE}"
   done
 
 
@@ -130,7 +130,7 @@ if [[ ! -z "${FETCH}" ]]; then
   for i in ${EXCHNAME}; do
     ((INCRUN++))
     INCCURR="$(echo "${EXCHCURR}" | awk_incrun )"
-    HEADER="${HEADER},Buy ${i} (${INCCURR}),Sell ${i} (${INCCURR})"
+    HEADER+=",Buy ${i} (${INCCURR}),Sell ${i} (${INCCURR})"
   done
   HEADER="Date${HEADER}"
 
@@ -173,12 +173,12 @@ if [[ ! -z "${PLOT}" ]]; then
       for c in ${EXCHNAME}; do
         # Run Buy
         ((INCRUN++))
-        PLOTDATA="${PLOTDATA} \"${FILE}all.csv\" using 1:(\$${INCRUN}) with lines ls ${INCSTYLE},"
+        PLOTDATA+=" \"${FILE}all.csv\" using 1:(\$${INCRUN}) with lines ls ${INCSTYLE},"
         ((INCSTYLE++))
 
         # Run Sell
         ((INCRUN++))
-        PLOTDATA="${PLOTDATA} \"${FILE}all.csv\" using 1:(\$${INCRUN}) with lines ls ${INCSTYLE},"
+        PLOTDATA+=" \"${FILE}all.csv\" using 1:(\$${INCRUN}) with lines ls ${INCSTYLE},"
         ((INCSTYLE++))
       done
 
